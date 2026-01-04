@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a2b3d, #2c4b6d, #1f3a5a); /* lighter night gradient */
+    overflow: hidden;
+}
+
+/* Floating particles */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 15px;
+    height: 15px;
+    background: rgba(0,0,0,0.35); /* dark particles */
+    animation: move 20s linear infinite;
+    bottom: -150px;
+    border-radius: 4px;
+}
+
+.particles li:nth-child(1) { left: 10%; animation-duration: 12s; width: 10px; height: 10px; }
+.particles li:nth-child(2) { left: 20%; animation-duration: 18s; }
+.particles li:nth-child(3) { left: 30%; animation-duration: 25s; width: 20px; height: 20px; }
+.particles li:nth-child(4) { left: 40%; animation-duration: 14s; }
+.particles li:nth-child(5) { left: 50%; animation-duration: 22s; width: 12px; height: 12px; }
+.particles li:nth-child(6) { left: 60%; animation-duration: 16s; }
+.particles li:nth-child(7) { left: 70%; animation-duration: 20s; width: 18px; height: 18px; }
+.particles li:nth-child(8) { left: 80%; animation-duration: 26s; }
+.particles li:nth-child(9) { left: 90%; animation-duration: 15s; width: 8px; height: 8px; }
+.particles li:nth-child(10){ left: 95%; animation-duration: 30s; }
+
+@keyframes move {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    100% { transform: translateY(-1100px) rotate(360deg); opacity: 0; }
+}
+
+/* Scene */
+.scene {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glass 3D Card */
+.card {
+    width: 430px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.8),
+        inset 0 0 20px rgba(255,255,255,0.15);
+    text-align: center;
+    color: #ffffff;
+    transform-style: preserve-3d;
+    animation: float 4s ease-in-out infinite;
+    transition: transform 0.6s;
+}
+
+.card:hover {
+    transform: rotateY(18deg) rotateX(12deg);
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+}
+
+.subtitle { opacity: 0.8; margin-bottom: 20px; }
+
+textarea {
+    width: 100%;
+    height: 110px;
+    border-radius: 12px;
+    border: none;
+    padding: 12px;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #7f00ff, #00c6ff);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.35);
+}
+
+/* Click Blast Particles */
+.click-particle {
+    position: fixed;
+    width: 15px;  /* bigger */
+    height: 15px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: blast 700ms ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes blast {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Emotion Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- Floating background particles -->
+    <ul class="particles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <div class="scene">
+        <div class="card">
+            <h1>AI Emotion Detection</h1>
+            <p class="subtitle">Customer Feedback Analysis</p>
+
+            <form method="POST">
+                <textarea name="feedback" placeholder="Enter customer feedback..." required></textarea>
+                <button type="submit">Analyze Emotion</button>
+            </form>
+
+            {% if emotion %}
+            <div class="result">
+                <h2>{{ emoji }} {{ emotion | upper }}</h2>
+                <p>Confidence: <b>{{ confidence }}%</b></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Click blast script -->
+    <script src="/static/click.js"></script>
+</body>
+</html>
